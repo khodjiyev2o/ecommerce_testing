@@ -4,6 +4,9 @@ import json
 import datetime
 from .models import * 
 from .utils import cookieCart, cartData, guestOrder
+from django.views.generic.edit import CreateView
+from .models import Product
+
 
 def store(request):
 	data = cartData(request)
@@ -90,3 +93,11 @@ def processOrder(request):
 		)
 
 	return JsonResponse('Payment submitted..', safe=False)
+
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    template_name = 'store/new_product.html'
+    success_url = '/'
+    fields = "__all__"
