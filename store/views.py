@@ -101,3 +101,9 @@ class ProductCreateView(CreateView):
     template_name = 'store/new_product.html'
     success_url = '/'
     fields = "__all__"
+
+
+def product_detail(request,pk):
+	product = Product.objects.get(id=pk)
+	
+	return render(request,'product_detail.html',{'product':product})
