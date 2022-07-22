@@ -6,6 +6,7 @@ from .models import *
 from .utils import cookieCart, cartData, guestOrder
 from django.views.generic.edit import CreateView
 from .models import Product
+from .forms import ProductForm
 
 
 def store(request):
@@ -100,7 +101,7 @@ class ProductCreateView(CreateView):
     model = Product
     template_name = 'store/new_product.html'
     success_url = '/'
-    fields = "__all__"
+    form_class = ProductForm
 
 
 def product_detail(request,pk):

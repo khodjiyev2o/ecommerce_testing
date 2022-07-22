@@ -21,6 +21,7 @@ class TestModels(TestCase):
     def test_order(self):
         self.assertEquals(Order.objects.count(),1)
         self.assertEquals(Order.objects.first().get_cart_total,45.00)
+        self.assertEquals(Order.objects.first().get_cart_items,2)
     def test_order_item(self):
         self.assertEquals(OrderItem.objects.count(),1)
         self.assertEquals(OrderItem.objects.get(id=1).get_total,45.00)
