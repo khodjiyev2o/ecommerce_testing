@@ -1,6 +1,3 @@
-
-
-
 from django.test import SimpleTestCase
 from django.urls import reverse,resolve
 from store.views import store,cart,checkout,updateItem,ProductCreateView,product_detail
