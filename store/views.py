@@ -106,4 +106,4 @@ class ProductCreateView(CreateView):
 def product_detail(request,pk):
 	product = Product.objects.get(id=pk)
 	
-	return render(request,'product_detail.html',{'product':product})
+	return render(request,'store/product_detail.html',{'product':product})

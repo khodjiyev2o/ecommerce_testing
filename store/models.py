@@ -1,6 +1,7 @@
+import email
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.db.models.signals import post_save
 # Create your models here.
 
 class Customer(models.Model):
@@ -11,7 +12,11 @@ class Customer(models.Model):
 	def __str__(self):
 		return self.name
 
-
+	def add_new_customer(sender,instance,created,**kwargs):
+		user = instance
+		if created:
+			Customer.objects.create(user=user,name=user.username,email=user.email)
+		 
 class Product(models.Model):
 	name = models.CharField(max_length=200)
 	price = models.FloatField()
@@ -81,3 +86,6 @@ class ShippingAddress(models.Model):
 
 	def __str__(self):
 		return self.address
+
+
+post_save.connect(Customer.add_new_customer,sender=User)
